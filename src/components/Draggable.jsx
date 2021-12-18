@@ -7,8 +7,8 @@ const Draggable = ({ background }) => {
   const ref = useRef();
   const [startX, setStartX] = useState(0);
   const [startY, setStartY] = useState(0);
-  const [deltaX, setDeltaX] = useState(0);
-  const [deltaY, setDeltaY] = useState(0);
+  const [deltaX, setDeltaX] = useState(600);
+  const [deltaY, setDeltaY] = useState(300);
   const userPressed = useCallback((event) => {
     let target = event.target.className.split('-')[1];
     const children = [...ref.current.children];
@@ -32,7 +32,7 @@ const Draggable = ({ background }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
-    ref.current?.addEventListener('pointerdown', userPressed, {
+    ref.current.addEventListener('pointerdown', userPressed, {
       passive: true,
     });
   }, [userPressed]);
@@ -58,4 +58,5 @@ export default Draggable;
 const Container = styled.div`
   height: 100vh;
   touch-action: none;
+  /* overflow: hidden; */
 `;
